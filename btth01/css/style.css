@@ -29,3 +29,27 @@ body{
     overflow-y: hidden;
 }
 
+main img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px; 
+}
+
+article.summary img {
+  margin-bottom: 0.5em;
+}
+
+article.summary img:hover {
+  opacity: 0.6;
+}
+
+article.summary p {
+  margin: 0 0 0.6em 0;
+}
+
+article.summary a:hover p
+{
+  color: #295073;
+}
+
+
