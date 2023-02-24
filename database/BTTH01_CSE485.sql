@@ -175,7 +175,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`ten_dnhap`, `mat_khau`) VALUES
 ('trinh', '123456'),
 ('hieu', '123456'),
-('phuong', '123456'),
+('phuong', '123456');
 
 -- --------------------------------------------------------
 
