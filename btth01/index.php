@@ -1,63 +1,64 @@
 <?php
-require './includes/header_home_page.php';
+declare(strict_types = 1);
+require './includes/database_connection.php';
+require './includes/functions.php';
+
+$sql = "SELECT bv.ma_bviet, bv.tieude, bv.ten_bhat, bv.hinhanh,
+               tg.ten_tgia AS tacgia,
+               tl.ten_tloai AS theloai
+          FROM baiviet      AS bv
+          JOIN tacgia       AS tg ON bv.ma_tgia = tg.ma_tgia
+          JOIN theloai      AS tl ON bv.ma_tloai = tl.ma_tloai
+          ORDER BY bv.ma_bviet
+          LIMIT 12;";
+
+$articles = pdo($pdo, $sql)->fetchAll();
+
+$title = 'Music for Life';
 ?>
-    <main class="container-fluid mt-3">
-        <h3 class="text-center text-uppercase mb-3 text-primary">TOP bài hát yêu thích</h3>
+<?php include './includes/header_home_page.php'; ?>
+    <div id="carouselExampleIndicators" class="carousel slide">     
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/slideshow/slide01.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="images/slideshow/slide02.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="images/slideshow/slide03.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <main class="container" id="content">
+        <h2 class="text-center text-uppercase m-3 text-primary">TOP bài hát yêu thích</h2>
         <div class="row">
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Cây, lá và gió</a>
-                        </h5>
+            <?php foreach($articles as $article) { ?>
+                <article class="col-sm-3 summary">
+                    <div class="card mb-2" style="width: 100%;">
+                        <a href="detail.php?id=<?= $article['ma_bviet']; ?>" class="text-decoration-none">
+                            <img src="./images/songs/<?= html_escape($article['hinhanh']); ?>" 
+                                alt="<?= html_escape($article['tieude']); ?>">
+                            <h5 class="card-title text-center"><?= html_escape($article['ten_bhat']); ?></h5>
+                            <h6>Tác giả: <?= html_escape($article['tacgia']); ?></h6>
+                            <h6>Thể loại: <?= html_escape($article['theloai']); ?></h6>
+                        </a>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Cuộc sống mến thương</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs//longme.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Lòng mẹ</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/phoipha.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Phôi pha</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs/noitinhyeubatdau.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center my-title">
-                            <a href="" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+            </article>
+            <?php } ?>
         </div>
     </main>
 <?php
