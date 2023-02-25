@@ -1,6 +1,6 @@
 <?php
 session_start();
-$message = "Vui lòng đăng nhập";
+$message = "Đã hết thời gian làm việc vui lòng đăng nhập";
 if (isset($_SESSION['LAST_ACTIVITY'])) {
     // 60 is logout time when doing nothing
     if (time() - $_SESSION['LAST_ACTIVITY'] > 60) {
@@ -10,6 +10,7 @@ if (isset($_SESSION['LAST_ACTIVITY'])) {
         $_SESSION['LAST_ACTIVITY'] = time();
     }
 } else {
+    session_destroy();
     header("Location: ../login.php?error=$message");
 }
 ?>
@@ -55,7 +56,7 @@ if (isset($_SESSION['LAST_ACTIVITY'])) {
                             <a class="nav-link" href="../admin/articles.php">Bài viết</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Đăng xuất</a>
+                            <a class="nav-link" href="../admin/logout.php">Đăng xuất</a>
                         </li>
                     </ul>
                 </div>
