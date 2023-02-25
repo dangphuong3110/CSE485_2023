@@ -1,3 +1,11 @@
+<?php 
+declare (string_types = 1);
+include '../includes/database_connection.php';
+include '../includes/functions.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

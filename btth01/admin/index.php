@@ -1,3 +1,22 @@
+<?php
+declare (strict_types = 1);
+require '../includes/database_connection.php';
+require '../includes/functions.php';
+
+$sql = "SELECT COUNT(*) AS so_luong FROM tacgia";
+$row_tacgia = pdo($pdo, $sql)->fetch();
+
+$sql = "SELECT COUNT(*) AS so_luong FROM user";
+$row_user = pdo($pdo, $sql)->fetch();
+
+$sql = "SELECT COUNT(*) AS so_luong FROM theloai";
+$row_theloai = pdo($pdo, $sql)->fetch();
+
+$sql = "SELECT COUNT(*) AS so_luong FROM baiviet";
+$row_baiviet = pdo($pdo, $sql)->fetch();
+
+$title = "Trang chủ - Admin";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +70,8 @@
                         <h5 class="card-title text-center">
                             <a href="" class="text-decoration-none">Người dùng</a>
                         </h5>
-
                         <h5 class="h1 text-center">
-                            110
+                            <?= html_escape($row_user['so_luong']); ?>
                         </h5>
                     </div>
                 </div>
@@ -65,9 +83,8 @@
                         <h5 class="card-title text-center">
                             <a href="" class="text-decoration-none">Thể loại</a>
                         </h5>
-
                         <h5 class="h1 text-center">
-                            10
+                            <?= html_escape($row_theloai['so_luong']); ?>
                         </h5>
                     </div>
                 </div>
@@ -81,7 +98,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                            <?= html_escape($row_tacgia['so_luong']); ?>
                         </h5>
                     </div>
                 </div>
@@ -95,7 +112,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?= html_escape($row_tacgia['so_luong']); ?>
                         </h5>
                     </div>
                 </div>
