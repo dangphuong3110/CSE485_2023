@@ -1,4 +1,15 @@
 <?php
+declare(strict_types=1);
+require '../includes/database_connection.php';
+require '../includes/functions.php';
+
+$sql = "SELECT * FROM tacgia";
+$rows = pdo($pdo, $sql)->fetchAll();
+
+$title = "Tác giả";
+?>
+
+<?php
 require '../includes/header_admin.php';
 ?>
 <main class="container mt-5 mb-5">
@@ -17,34 +28,24 @@ require '../includes/header_admin.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row"><?= 1?></th>
-                        <td><?= "Hoàng Anh Tuấn" ?></td>
-                        <td><img src="../images/authors/<?= 'avatar.jpg'?>" alt="Đây là hình tấc giả"></td>
-                        <td>
-                            <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa-solid fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><?= 2?></th>
-                        <td><?= "Nguyễn Phương Trinh" ?></td>
-                        <td><img src="../images/authors/<?= 'avatar.jpg'?>" alt="Đây là hình tấc giả"></td>
-                        <td>
-                            <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa-solid fa-trash"></i></a>
-                        </td>
-                    </tr>
-
+                    <?php foreach ($rows as $row) { ?>
+                        <tr>
+                            <th scope="row"><?= html_escape($row['ma_tgia']); ?></th>
+                            <td><?= html_escape($row['ten_tgia']); ?></td>
+                            <td><img src="../images/authors/<?= $row['hinh_tgia']?>" alt="Đây là hình tác giả"></td>
+                            <td>
+                                <a href="edit_author.php?id=<?= html_escape($row['ma_tgia']) ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
+                            <td>
+                                <a href=""><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
 <?php
-    include '../includes/footer.php';
+include '../includes/footer.php';
 ?>

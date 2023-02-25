@@ -1,4 +1,11 @@
 <?php
+declare(strict_types = 1);
+require '../includes/database_connection.php';
+require '../includes/functions.php';
+
+$title = "Thêm tác giả";
+?>
+<?php
 require '../includes/header_admin.php';
 ?>
 
