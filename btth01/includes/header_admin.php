@@ -34,7 +34,7 @@
                         <a class="nav-link" href="../admin/author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/article.php">Bài viết</a>
+                        <a class="nav-link" href="../admin/articles.php">Bài viết</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Đăng xuất</a>
