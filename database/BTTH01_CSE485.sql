@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 25, 2023 lúc 01:16 AM
+-- Thời gian đã tạo: Th2 25, 2023 lúc 03:56 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -229,6 +229,16 @@ ALTER TABLE `tacgia`
 --
 ALTER TABLE `theloai`
   ADD PRIMARY KEY (`ma_tloai`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `baiviet`
+--
+ALTER TABLE `baiviet`
+  MODIFY `ma_bviet` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
