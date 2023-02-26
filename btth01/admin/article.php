@@ -4,6 +4,8 @@ require '../includes/database_connection.php';
 require '../includes/functions.php';
 require '../includes/validate.php';
 
+$title = 'Sửa bài viết';
+
 $uploads = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'songs'. DIRECTORY_SEPARATOR;
 $file_types      = ['image/jpeg', 'image/png', 'image/gif'];
 $file_extensions = ['jpg', 'jpeg', 'png', 'gif'];
@@ -111,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php include '../includes/header_admin.php'; ?>
     <form action="article.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
         <main class="container" id="content">
-        <h3 class="text-center text-uppercase fw-bold mt-3">Sửa thông tin bài viết</h3>
+        <h3 class="text-center text-uppercase fw-bold mt-4">Sửa thông tin bài viết</h3>
             <?php if ($errors['warning']) { ?>
                 <div class="alert alert-danger"><?= $errors['warning'] ?></div>
             <?php } ?>
