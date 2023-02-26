@@ -233,6 +233,8 @@ ALTER TABLE `theloai`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+ALTER TABLE `tacgia`
+  MODIFY `ma_tgia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `baiviet`
