@@ -3,6 +3,8 @@ declare(strict_types = 1);
 require '../includes/database_connection.php';
 require '../includes/functions.php';
 
+$title = 'Bài viết';
+
 $success = $_GET['success'] ?? null;
 $failure = $_GET['failure'] ?? null;
 
@@ -16,13 +18,13 @@ $sql = "SELECT bv.ma_bviet, bv.tieude, bv.tomtat, bv.noidung, bv.ngayviet, bv.hi
 $articles = pdo($pdo, $sql)->fetchAll();
 ?>
 <?php include '../includes/header_admin.php'; ?>
-    <main class="container-fluid mt-5 mb-5">
+    <main class="container mt-4 mb-5">
         <div class="row">
-            <div class="col-sm table-responsive-sm">
+            <div class="col-sm table-responsive-sm" style="overflow: auto;">
                 <?php if ($success) { ?><div class="alert alert-success text-center"><?= $success ?></div><?php } ?>
                 <?php if ($failure) { ?><div class="alert alert-danger"><?= $failure ?></div><?php } ?>
-                <a href="article.php" class="btn btn-success">Thêm mới</a>
-                <table class="table table-striped table-hover">
+                <a href="article.php" class="btn btn-success mb-2">Thêm mới</a>
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Mã bài viết</th>
@@ -40,19 +42,19 @@ $articles = pdo($pdo, $sql)->fetchAll();
                     <tbody>
                         <?php foreach($articles as $article){ ?>
                             <tr>
-                                <th scope="row"><?= $article['ma_bviet']; ?></th>
-                                <td><?= $article['tieude']; ?></td>
-                                <td><?= $article['tomtat']; ?></td>
-                                <td><?= $article['noidung']; ?></td>
-                                <td><?= $article['ngayviet']; ?></td>
-                                <td><img src ="../images/songs/<?= $article['hinhanh']; ?>" alt="" width = 100px height = 70px></td>
-                                <td><?= $article['tacgia']; ?></td>
-                                <td><?= $article['theloai']; ?></td>
+                                <th scope="row"><?= html_escape($article['ma_bviet']); ?></th>
+                                <td><?= html_escape($article['tieude']); ?></td>
+                                <td><?= html_escape($article['tomtat']); ?></td>
+                                <td><?= html_escape($article['noidung']); ?></td>
+                                <td><?= html_escape($article['ngayviet']); ?></td>
+                                <td><img src ="../images/songs/<?= html_escape($article['hinhanh']); ?>" alt="" width = 100px height = 70px></td>
+                                <td><?= html_escape($article['tacgia']); ?></td>
+                                <td><?= html_escape($article['theloai']); ?></td>
                                 <td>
-                                    <a href="article.php?id=<?= $article['ma_bviet']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="article.php?id=<?= html_escape($article['ma_bviet']); ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 <td>
-                                    <a href="article-delete.php?id=<?= $article['ma_bviet']; ?>"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="article-delete.php?id=<?= html_escape($article['ma_bviet']); ?>"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

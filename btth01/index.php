@@ -10,7 +10,7 @@ $sql = "SELECT bv.ma_bviet, bv.tieude, bv.ten_bhat, bv.hinhanh,
           JOIN tacgia       AS tg ON bv.ma_tgia = tg.ma_tgia
           JOIN theloai      AS tl ON bv.ma_tloai = tl.ma_tloai
           ORDER BY bv.ma_bviet
-          LIMIT 12;";
+          LIMIT 8;";
 
 $articles = pdo($pdo, $sql)->fetchAll();
 
@@ -44,17 +44,17 @@ $title = 'Music for Life';
         </button>
     </div>
     <main class="container" id="content">
-        <h2 class="text-center text-uppercase m-3 text-primary">TOP bài hát yêu thích</h2>
+        <h2 class="text-center text-uppercase m-3 text-black fw-bold">---------------TOP bài hát yêu thích---------------</h2>
         <div class="row">
             <?php foreach($articles as $article) { ?>
                 <article class="col-sm-3 summary">
-                    <div class="card mb-2" style="width: 100%;">
+                    <div class="card mb-4" style="width: 100%;">
                         <a href="detail.php?id=<?= $article['ma_bviet']; ?>" class="text-decoration-none">
                             <img src="./images/songs/<?= html_escape($article['hinhanh']); ?>" 
-                                alt="<?= html_escape($article['tieude']); ?>">
-                            <h5 class="card-title text-center"><?= html_escape($article['ten_bhat']); ?></h5>
-                            <h6>Tác giả: <?= html_escape($article['tacgia']); ?></h6>
-                            <h6>Thể loại: <?= html_escape($article['theloai']); ?></h6>
+                                alt="<?= html_escape($article['tieude']); ?>" class="card-img-top" style="height: 10em;">
+                            <h5 class="card-title text-center fw-bold"><?= html_escape($article['ten_bhat']); ?></h5>
+                            <h6><span class="fw-bold">Tác giả: </span><?= html_escape($article['tacgia']); ?></h6>
+                            <h6><span class="fw-bold">Thể loại: </span><?= html_escape($article['theloai']); ?></h6>
                         </a>
                     </div>
             </article>

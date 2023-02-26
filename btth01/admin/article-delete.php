@@ -3,6 +3,8 @@ declare(strict_types = 1);
 require '../includes/database_connection.php';
 require '../includes/functions.php';
 
+$title = 'Xóa bài viết';
+
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if(!$id){
     redirect('articles.php', ['failure' => 'Không tìm thấy bài viết']);
@@ -26,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <form action="article-delete.php?id=<?= $id; ?>" method="POST" class="narrow">
             <h1 class="m-3">Xóa bài viết</h1>
             <p>Bạn có chắc chắn muốn xóa bài viết: <em><?= html_escape($article['tieude']) ?></em>?</p>
-            <div class="row" margin>
+            <div class="row">
                 <div class="col-6">
                     <input type="submit" name="delete" value="Xóa" class="btn btn-danger">
                 </div>
