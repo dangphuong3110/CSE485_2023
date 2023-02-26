@@ -1,17 +1,13 @@
 <?php
-if (isset($_GET['error'])) {
-    echo "<script>alert('{$_GET['error']}')</script>";
-}
+$error = $_GET['error'] ?? '';
 ?>
 <?php
 $title = "Login";
 $name_css = "style_login.css";
 require './includes/database_connection.php';
 require './includes/functions.php';
-require './includes/header_home_page.php';
 ?>
 <?php
-session_start();
 $username = $password = '';
 $username_error = $password_error = '';
 if (isset($_POST['submit'])) {
@@ -20,18 +16,19 @@ if (isset($_POST['submit'])) {
     } else {
         $username = html_escape($_POST['username']);
     }
-
+    
     if (empty($_POST['password'])) {
         $password_error = "Mật khẩu không được để trống.";
     } else {
         $password = html_escape($_POST['password']);
     }
-
+    
     $validate_success = empty($username_error) && empty($password_error);
     if ($validate_success) {
         $sql = "SELECT * FROM user WHERE ten_dnhap = :username AND mat_khau = :password";
         $result = pdo($pdo, $sql, ['username' => $username, 'password' => $password]);
         if ($result->rowCount() > 0) {
+            session_start();
             $_SESSION['LAST_ACTIVITY'] = time();
             header("Location: ./admin/");
         } else {
@@ -40,8 +37,11 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+<?php
+require './includes/header_home_page.php';
+?>
+<?php if ($error) { ?><div class="alert alert-success text-center"><?= $error ?></div><?php } ?>
 <main class="container mt-5 mb-5">
-    <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
