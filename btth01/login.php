@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['LAST_ACTIVITY'] = time();
             header("Location: ./admin/");
         } else {
-            header("Location: login.php?error='Sai tên đăng nhập hoặc mật khẩu'");
+            header("Location: login.php?error=Sai tên đăng nhập hoặc mật khẩu");
         }
     }
 }

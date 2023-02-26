@@ -2,8 +2,8 @@
 session_start();
 $message = "Đã hết thời gian làm việc vui lòng đăng nhập";
 if (isset($_SESSION['LAST_ACTIVITY'])) {
-    // 60 is logout time when doing nothing
-    if (time() - $_SESSION['LAST_ACTIVITY'] > 60) {
+    // 300 is logout time when doing nothing
+    if (time() - $_SESSION['LAST_ACTIVITY'] > 300) {
         session_destroy();
         header("Location: ../login.php?error=$message");
     } else {
