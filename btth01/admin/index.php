@@ -19,7 +19,7 @@ $title = "Trang chủ - Admin";
 ?>
 
 <?php require '../includes/header_admin.php' ?>
-    <main class="container mt-5 mb-5">
+    <main class="container mt-5 mb-5" style="min-height: 60vh;">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm-3">
