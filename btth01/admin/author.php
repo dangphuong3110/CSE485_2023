@@ -39,7 +39,7 @@ require '../includes/header_admin.php';
                             <td><?= html_escape($row['ten_tgia']); ?></td>
                             <td><img src="../images/authors/<?= $row['hinh_tgia'] ?>" alt="Đây là hình tác giả" width = 100px></td>
                             <td><a href="edit_author.php?id=<?= html_escape($row['ma_tgia']) ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="delete_author.php?id=<?= html_escape($row['ma_tgia']) ?>"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
