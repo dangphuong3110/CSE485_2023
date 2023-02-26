@@ -16,13 +16,13 @@ $sql = "SELECT bv.ma_bviet, bv.tieude, bv.tomtat, bv.noidung, bv.ngayviet, bv.hi
 $articles = pdo($pdo, $sql)->fetchAll();
 ?>
 <?php include '../includes/header_admin.php'; ?>
-    <main class="container-fluid mt-5 mb-5">
+    <main class="container mt-4 mb-5">
         <div class="row">
-            <div class="col-sm table-responsive-sm">
+            <div class="col-sm table-responsive-sm" style="overflow: auto;">
                 <?php if ($success) { ?><div class="alert alert-success text-center"><?= $success ?></div><?php } ?>
                 <?php if ($failure) { ?><div class="alert alert-danger"><?= $failure ?></div><?php } ?>
-                <a href="article.php" class="btn btn-success">Thêm mới</a>
-                <table class="table table-striped table-hover">
+                <a href="article.php" class="btn btn-success mb-2">Thêm mới</a>
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Mã bài viết</th>
