@@ -18,9 +18,20 @@ if(!$category){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $sql = "DELETE FROM theloai WHERE ma_tloai = :ma_tloai";
-    pdo($pdo, $sql, ['ma_tloai' => $id]);
-    redirect('categories.php', ['success' => 'Đã xóa thể loại']);
+    try{
+        $sql = "DELETE FROM theloai WHERE ma_tloai = :ma_tloai";
+        pdo($pdo, $sql, ['ma_tloai' => $id]);
+        redirect('categories.php', ['success' => 'Đã xóa thể loại']);
+    }
+    catch(PDOException $e){
+        if($e->errorInfo[1] == 1451){
+            redirect('categories.php', ['failure' => 'Thể loại '.$category['ten_tloai'].' có chứa các bài viết khác.
+            Vui lòng di chuyển các bài viết hoặc xóa chúng trước khi xóa thể loại này']);
+        }
+        else{
+            throw $e;
+        }
+    }
 }
 ?>
 <?php include '../includes/header_admin.php'; ?>
